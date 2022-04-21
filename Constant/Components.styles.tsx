@@ -1,5 +1,5 @@
-import {Dimensions, Platform} from 'react-native';
-const {width, height} = Dimensions.get('window');
+import { Dimensions, Platform } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 var date = new Date().getDate(); //Current Date
 var month = new Date().getMonth() + 1; //Current Month
@@ -10,6 +10,15 @@ const CurrentDate = year + '-' + month + '-' + date;
 export default {
   WIDTH: width,
   HEIGHT: height,
+
+  FONT_FAMILY: {
+    BOLD: 'Montserrat-Bold',
+    BLACK: 'Montserrat-Black',
+    BOLD_EXTRA: 'Montserrat-ExtraBold',
+    SEMI_BOLD: 'Montserrat-SemiBold',
+    REGULAR: 'Montserrat-Regular',
+    MEDIUM: 'Montserrat-Medium',
+  },
 
   COLORS: {
     WHITE: '#ffffff',

@@ -5,12 +5,11 @@ export default StyleSheet.create({
     imageContent: {
         width: '100%',
         height: 300,
-        resizeMode: 'stretch',
+        borderRadius:8,
     },
     noteContent: {
-        alignSelf: 'center',
-        fontWeight: '300',
-        fontSize: 14,
+        fontFamily:ComponentsStyles.FONT_FAMILY.REGULAR,
+        fontSize: 15,
         color: ComponentsStyles.COLORS.BLACK,
         textAlign: 'justify',
         marginTop: 10,
@@ -18,31 +17,46 @@ export default StyleSheet.create({
     imageView: {
         width: '100%',
         height: 300,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 10,
+        
     },
     headerText: {
-        alignSelf: 'center',
-        fontWeight: '600',
+        alignSelf: 'flex-start',
+        fontFamily:ComponentsStyles.FONT_FAMILY.BOLD,
         fontSize: 20,
         color: ComponentsStyles.COLORS.BLACK,
-        textAlign: 'center'
+        textAlign: 'left',
     },
     dateText: {
         color: ComponentsStyles.COLORS.ASH,
-        alignSelf: 'center'
+        alignSelf: 'flex-start',
+        fontSize:12,
+        fontFamily:ComponentsStyles.FONT_FAMILY.SEMI_BOLD,
     },
     authorText: {
         color: ComponentsStyles.COLORS.ASH,
-        marginLeft: 10,
+        marginLeft: 5,
+        fontFamily:ComponentsStyles.FONT_FAMILY.SEMI_BOLD,
+        flex:1,
     },
     sourceText:{
         color:ComponentsStyles.COLORS.ASH,
-        marginRight: 20,
-        marginLeft: 10,
+        marginLeft: 5,
+        fontFamily:ComponentsStyles.FONT_FAMILY.SEMI_BOLD,
+        flex:1
     },
     authorBody:{
-        flexDirection: 'row',
-        alignSelf:'center'
+        // flexDirection: 'row',
+        // alignSelf:'flex-start',
+        alignItems:'center',
+        justifyContent:'space-between',
+        flex:1,
+    },
+    iconView: {
+        // marginRight: 10,
+        marginLeft: 15,
+        top:10,
     }
 
 });

@@ -6,25 +6,26 @@ import React, { useCallback, useState } from "react";
 import {
     View,
     Text,
-    StyleSheet,
     Image,
     TouchableOpacity
 } from "react-native";
-import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconI from 'react-native-vector-icons/Ionicons';
 import moment from "moment";
 import styles from './style'
 import ComponentsStyles from "../../Constant/Components.styles";
+import TwoIconText from "../../SubComponents/TwoIconText/TwoIconText";
 
 type ParamTypes = {
     title: String;
     author: String;
     note: String;
+    source: String;
     date: any;
     imageUrl: any;
     onPress: Function;
 };
 
-const NewsDetails = ({ title, author, date, note, imageUrl, onPress }: ParamTypes) => {
+const NewsDetails = ({ title, author, date, note, imageUrl, source, onPress }: ParamTypes) => {
 
     const [textShown, setTextShown] = useState(false); //To show ur remaining Text
     const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
@@ -36,31 +37,41 @@ const NewsDetails = ({ title, author, date, note, imageUrl, onPress }: ParamType
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={onPress}>
-                <Text numberOfLines={textShown ? undefined : 2} style={styles.headerText}>{title}</Text>
-            </TouchableOpacity>
-            <Text style={styles.authorText}>{author ? "By " + author : "- No Author -"}</Text>
-            <Text style={styles.dateText}> {moment(date).format('DD MMM YYYY : HH:mm a')}  <IconMC name='calendar-text-outline' size={20} color={ComponentsStyles.COLORS.ASH}/> </Text>
             <View style={styles.imageTextContent}>
-                <View style={{ flex: 1, alignSelf: 'flex-start', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-                    <Image
-                        // source={{ uri:require('../../assets/images/noImage.jpg') }}
-                        source={!imageError && imageUrl ? { uri: imageUrl } : require('../../assets/images/noImage.jpg')}
-                        onError={() => { setImageError(true) }}
-                        style={
-                            styles.imageContent
-                        }
-                    />
+                <View style={{ flex: 1.8 }}>
+                    <TwoIconText
+                        icon={<IconI name='person-circle' size={15} color={ComponentsStyles.COLORS.ASH} />}
+                        name={author ? author : "- No Author -"} />
+                    <TouchableOpacity onPress={onPress}>
+                        <Text style={styles.headerText}>{title}</Text>
+                    </TouchableOpacity>
+                    
+                    <TwoIconText
+                        icon={<IconI name='ios-calendar-outline' size={15} color={ComponentsStyles.COLORS.ASH} />}
+                        name={moment(date).format('DD MMM YYYY : HH:mm a')} />
 
-                </View>
-                <View style={{ flex: 1.5, marginLeft: 5, }}>
+                    <TwoIconText
+                        icon={<IconI name='ios-bookmarks' size={15} color={ComponentsStyles.COLORS.ASH} />}
+                        name={source} />
+
                     <Text
                         onTextLayout={onTextLayout}
-                        numberOfLines={textShown ? undefined : 5}
+                        numberOfLines={textShown ? undefined : 2}
                         style={styles.noteText}
                     >
                         {note}
                     </Text>
+                </View>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Image
+                        source={!imageError && imageUrl ? { cache: 'only-if-cached', uri: imageUrl } : require('../../assets/images/noImage.jpg')}
+                        onError={() => { setImageError(true) }}
+                        style={
+                            styles.imageContent
+                        }
+                        resizeMode={'cover'}
+                    />
+
                 </View>
             </View>
         </View>
